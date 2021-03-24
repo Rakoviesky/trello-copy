@@ -1,10 +1,10 @@
 .listItem__wrapper {
+  margin:10px;
   height: 100vh;
   width: 220px;
 }
 
 .listItem__item {
-  margin-top: 10px;
   background-color: white;
   width: 200px;
   max-height: 100%;

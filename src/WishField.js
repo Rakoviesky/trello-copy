@@ -28,7 +28,7 @@ export default function WishField(props) {
   };
 
   return (
-    <div>
+    <>
       <div className={`listAdd ${displayed && "displayed"}`} onClick={addList}>
         <span className="listAdd__add">+</span>Add a list...
       </div>
@@ -50,6 +50,6 @@ export default function WishField(props) {
           />
         </form>
       </div>
-    </div>
+    </>
   );
 }
