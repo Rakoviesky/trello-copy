@@ -5,7 +5,6 @@ import Item from "./Item";
 export default function ListItem({ listItems }) {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
-  const [displayed, setDisplayed] = useState(false);
 
   const addTask = (itemId) => {
     if (input === "") {
@@ -23,35 +22,37 @@ export default function ListItem({ listItems }) {
 
   const handleChange = (e) => {
     setInput(e.target.value);
-    //hideElement(e);
   };
 
-  const hideElement = (el) => {
-    el.target.parentElement.classList.add("hide");
-    document.querySelector(".listItem__addItem").classList.remove("hide");
-    setDisplayed(false);
+  const hideElement = () => {
+    let newTaskItem = document.querySelector('.listItem__newTaskItem:not(.hide)')
+    if(newTaskItem != null){
+      let addItemBtn = newTaskItem.parentElement.children[newTaskItem.parentElement.children.length - 2]
+      addItemBtn.classList.remove('hide')
+      newTaskItem.classList.add('hide')
+    }
   };
 
-  const addItem = () => {
-    setDisplayed(true);
+  const addItem = (e) => {
+    hideElement()
+    e.currentTarget.classList.add("hide")
+    e.currentTarget.parentElement.children[e.currentTarget.parentElement.children.length - 1].classList.remove("hide")
   };
 
   return listItems.map((item, index) => (
-    <div className="listItem__wrapper" key={item.id}>
-      <div className="listItem__item" key={item.id}>
+    <div className="listItem__wrapper" >
+      <div className="listItem__item" >
         <div className="listItem__header">{item.text}</div>
         <Item itemId={item.id} tasks={tasks} />
         <div
-          className={`listItem__addItem ${displayed === true ? "hide" : ""}`}
+          className="listItem__addItem"
           onClick={addItem}
-          key={item.id}
+          
         >
           <span className="listItem__addItemBtn">+</span>Add a item...
         </div>
         <div
-          className={`listItem__newTaskItem ${
-            displayed === false ? "hide" : ""
-          }`}
+          className="listItem__newTaskItem hide"
         >
           <textarea
             className="listItem__taskArea"

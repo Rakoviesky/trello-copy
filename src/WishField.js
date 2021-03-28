@@ -29,10 +29,10 @@ export default function WishField(props) {
 
   return (
     <>
-      <div className={`listAdd ${displayed && "displayed"}`} onClick={addList}>
+      <div className={`listAdd ${displayed ? "displayed" : ""}`} onClick={addList}>
         <span className="listAdd__add">+</span>Add a list...
       </div>
-      <div className={`wishField ${displayed === false && "displayed"}`}>
+      <div className={`wishField ${displayed === false ? "displayed" : ""}`}>
         <form onSubmit={handleSubmit}>
           <input
             className="wishField__input"
