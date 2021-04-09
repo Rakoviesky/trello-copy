@@ -41,36 +41,40 @@ export default function ListItem({ listItems }) {
   };
 
   return listItems.map((item, index) => (
-    <div className="listItem__wrapper" >
-      <div className="listItem__item" >
-        <div className="listItem__header">{item.text}</div>
-        <Item itemId={item.id} tasks={tasks} />
-        <div
-          className="listItem__addItem"
-          onClick={addItem}
-          
-        >
-          <span className="listItem__addItemBtn">+</span>Add a item...
-        </div>
-        <div
-          className="listItem__newTaskItem hide"
-        >
-          <textarea
-            className="listItem__taskArea"
-            key={item.id}
-            placeholder="Add a task..."
-            onBlur={handleChange}
-            rows="2"
-            cols="22"
-          ></textarea>
-          <button
-            className="listItem__addTaskButton"
-            onClick={() => addTask(item.id)}
-          >
-            Add a task...
-          </button>
-        </div>
-      </div>
-    </div>
+    
+        <div className="listItem__wrapper">
+          <Droppable droppableId={item.id.toString()}>{
+            provided=>(
+              <div className="listItem__item" ref={provided.innerRef} {...provided.droppableProps} >
+                <div className="listItem__header">{item.text}</div>
+                <Item itemId={item.id} tasks={tasks} />
+                <div className="listItem__addItem" onClick={addItem}>
+                  <span className="listItem__addItemBtn">+</span>Add a item...
+                </div>
+                <div
+                  className="listItem__newTaskItem hide"
+                >
+                  <textarea
+                    className="listItem__taskArea"
+                    key={item.id}
+                    placeholder="Add a task..."
+                    onBlur={handleChange}
+                    rows="2"
+                    cols="22"
+                  ></textarea>
+                  <button
+                    className="listItem__addTaskButton"
+                    onClick={() => addTask(item.id)}
+                  >
+                    Add a task...
+                  </button>
+                </div>
+                {provided.placeholder}
+              </div>
+              )
+            }
+          </Droppable>
+        </div>     
+ 
   ));
 }
