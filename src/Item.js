@@ -2,15 +2,16 @@ import "./styles/item.css";
 import {Draggable} from "react-beautiful-dnd";
 
 const Item = ({ tasks, itemId }) => {
-  return tasks.map(
+  return tasks.tasks.map(
     (task,index) =>
       task.taskId === itemId && (
-        <Draggable draggableId={task.taskId.toString()} index={index}>
+
+        <Draggable draggableId={task.id.toString()} index={index}>
         { 
           provided => (
             <div 
               className="item" 
-              key={tasks.id} 
+              key={task.id} 
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}

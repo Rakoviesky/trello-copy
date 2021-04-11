@@ -7,17 +7,26 @@
 .listItem__item {
   background-color: white;
   width: 200px;
+  /* height:600px; */
   max-height: 100%;
   padding: 10px;
   border-radius: 5px;
 }
+.listItem__newTaskItem{
+  height:auto;
+  height:100%;
+}
 
 .listItem__addItem {
-  background-color: rgba(0, 0, 0, 0.1);
   margin-top: 10px;
   width: 95%;
   padding: 5px;
   border-radius: 5px;
+}
+
+.listItem__addItem:hover{
+  cursor:pointer;
+  background-color: rgba(0, 0, 0, 0.05); 
 }
 
 .listItem__addItemBtn {
@@ -28,6 +37,8 @@
 .listItem__taskArea {
   resize: none;
   margin-top: 10px;
+  border-radius:5px;
+  border-color:rgba(0, 0, 0, 0.15);
 }
 
 .listItem__addTaskButton {

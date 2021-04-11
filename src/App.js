@@ -15,6 +15,20 @@ export default function App() {
   };
 
   const onDragEnd = result =>{
+    const {destination,source,draggableId} = result
+
+    if(!destination){
+      return;
+    }
+
+    if(
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+      ){
+        return;
+      }
+      
+      
     //add later something
   }
 
@@ -22,7 +36,7 @@ export default function App() {
     <DragDropContext onDragEnd={onDragEnd}>
     <div className="App">
       <WishField onSubmit={addTodo} />
-      <ListItem listItems={listItems} />
+      <ListItem listItems={listItems}  />
     </div>
     </DragDropContext>
   );

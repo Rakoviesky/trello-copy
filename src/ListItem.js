@@ -9,16 +9,34 @@ export default function ListItem({ listItems }) {
 
   const addTask = (itemId) => {
     if (input === "") {
+      console.log('pusty INPUT!')
       return;
     }
-    const newTask = {
-      taskId: itemId,
+
+    // task constructor
+    const task = {
       id: Math.floor(Math.random() * 100),
       text: input
-    };
-    const newTasksList = [...tasks, newTask];
-    setTasks(newTasksList);
-    setInput("");
+    }
+    
+    /* Checking if exists some tasks */  
+    const index = tasks.findIndex((el  => el.taskId === itemId))
+    console.log(index)
+    if(index > -1){
+      tasks[index].tasks.push(task)
+    }else{
+      const newTask = {
+        taskId: itemId,
+        tasks:[task]
+      };
+
+      const newTasksList = [...tasks, newTask];
+      console.log(newTasksList)
+      setTasks(newTasksList);
+      setInput("");
+    }
+
+    
   };
 
   const handleChange = (e) => {
@@ -58,7 +76,7 @@ export default function ListItem({ listItems }) {
                     className="listItem__taskArea"
                     key={item.id}
                     placeholder="Add a task..."
-                    onBlur={handleChange}
+                    onChange={handleChange}
                     rows="2"
                     cols="22"
                   ></textarea>
