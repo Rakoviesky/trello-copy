@@ -21,9 +21,9 @@ export default function ListItem({ listItems }) {
     
     /* Checking if exists some tasks */  
     const index = tasks.findIndex((el  => el.taskId === itemId))
-    console.log(index)
     if(index > -1){
       tasks[index].tasks.push(task)
+      setTasks([...tasks])
     }else{
       const newTask = {
         taskId: itemId,
@@ -36,7 +36,7 @@ export default function ListItem({ listItems }) {
       setInput("");
     }
 
-    
+    console.log(tasks)
   };
 
   const handleChange = (e) => {
@@ -60,7 +60,7 @@ export default function ListItem({ listItems }) {
 
   return listItems.map((item, index) => (
     
-        <div className="listItem__wrapper">
+        <div className="listItem__wrapper" key={item.id}>
           <Droppable droppableId={item.id.toString()}>{
             provided=>(
               <div className="listItem__item" ref={provided.innerRef} {...provided.droppableProps} >
@@ -74,7 +74,6 @@ export default function ListItem({ listItems }) {
                 >
                   <textarea
                     className="listItem__taskArea"
-                    key={item.id}
                     placeholder="Add a task..."
                     onChange={handleChange}
                     rows="2"

@@ -12,6 +12,7 @@ export default function App() {
     }
     const newListItems = [listItem, ...listItems];
     setListItems(newListItems);
+    console.log(listItems)
   };
 
   const onDragEnd = result =>{
